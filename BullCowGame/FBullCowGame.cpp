@@ -5,8 +5,10 @@
 #include <ctime>    // For time()
 #include <cstdlib>  // For srand() and rand()
 #include <map>
-
 #define TMap std::map
+
+// forward declaration of function
+int GenerateRandomNumber();
 
 // default constructor
 FBullCowGame::FBullCowGame() 
@@ -137,15 +139,7 @@ void FBullCowGame::GenerateHiddenWord()
 {
 	FString TempWord;
 	int32 NumOfLines = 0;
-	srand((int) time(0)); 
-	int32 RandomNumGen = (rand() % 100);
-	int RandomWordGenNumber;
-
-	for (int32 i = 0; i < RandomNumGen; i++)
-	{
-		RandomWordGenNumber = (rand() % RAND_MAX);
-	}
-
+	int32 RandomWordGenNumber = GenerateRandomNumber();
 	std::ofstream OutputFile("Answer.txt");
 	std::ifstream AvailableIsograms;
 	AvailableIsograms.open("isograms.txt");
@@ -169,4 +163,17 @@ void FBullCowGame::GenerateHiddenWord()
 FString FBullCowGame::ReturnHiddenWord()
 {
 	return MyHiddenWord;
+}
+
+int32 GenerateRandomNumber()
+{
+	int GeneratedNumber;
+	
+	srand((int32)time(0));
+	int32 RandomNumGen = (rand() % 100);
+	for (int32 i = 0; i < RandomNumGen; i++)
+	{
+		GeneratedNumber = (rand() % RAND_MAX);
+	}
+	return GeneratedNumber;
 }
