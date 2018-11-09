@@ -8,7 +8,7 @@
 #define TMap std::map
 
 // forward declaration of function
-int GenerateRandomNumber();
+int32 GenerateRandomNumber();
 
 // default constructor
 FBullCowGame::FBullCowGame() 
